@@ -14,6 +14,7 @@
 @interface PulldownMeunView()
 @property (nonatomic, strong) UIButton* selectBtn;
 @property (strong, nonatomic) NSMutableArray *buttonTags;
+@property (nonatomic, strong) UIView* coverView;
 
 @property (nonatomic, copy) NSArray* simpleArray;
 @property (nonatomic, copy) NSMutableArray* tipArr;
@@ -69,15 +70,25 @@
 -(void)initSubviews{
     CGFloat width = (ScreenWidth - 4 * margin)/3;
     
+    UIView * whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    whiteV.backgroundColor = [UIColor whiteColor];
+    [self addSubview:whiteV];
+    
     for (int i = 0; i<3; i++) {
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake((i+1)*margin+i*width, 0, width, 40);
         btn.tag = i;
+        [btn setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"down"] forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitle:self.tipArr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self addSubview:btn];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        CGFloat imageW = CGRectGetWidth(btn.imageView.bounds);//imageView的宽度
+        CGFloat titleW = CGRectGetWidth(btn.titleLabel.bounds);//titleLabel的宽度
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, -imageW, 0, imageW);
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, titleW, 0, -titleW);
+        [whiteV addSubview:btn];
         [self.buttonTags addObject:btn];
         
     }
@@ -85,6 +96,7 @@
     line.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     [self addSubview:line];
     
+  
     _tagView = [[ButtonTagView alloc]initWithTotalTagsNum:30
                                                   viewWidth:ScreenWidth-20
                                                     eachNum:0
@@ -109,6 +121,13 @@
     }
     self.selectBtn = sender;
     self.selectBtn.selected = !self.selectBtn.selected;
+    if (sender.selected) {
+        self.clickBlock(1);
+    }else{
+        self.clickBlock(0);
+
+
+    }
     if (sender.tag == 1) {
         eachNum = 2;
         _tagView.eachNum = 2;

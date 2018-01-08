@@ -15,6 +15,8 @@
 		7381684F1FFDE7E00011936D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7381684E1FFDE7E00011936D /* main.m */; };
 		738168581FFDE8530011936D /* ButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738168571FFDE8530011936D /* ButtonTagView.m */; };
 		7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7381685A1FFDE89D0011936D /* PulldownMeunView.m */; };
+		73B4030E20037A480037FE74 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B4030C20037A480037FE74 /* UserTableViewCell.m */; };
+		73B4030F20037A480037FE74 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73B4030D20037A480037FE74 /* UserTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		738168571FFDE8530011936D /* ButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTagView.m; sourceTree = "<group>"; };
 		738168591FFDE89D0011936D /* PulldownMeunView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PulldownMeunView.h; sourceTree = "<group>"; };
 		7381685A1FFDE89D0011936D /* PulldownMeunView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PulldownMeunView.m; sourceTree = "<group>"; };
+		73B4030B20037A480037FE74 /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		73B4030C20037A480037FE74 /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		73B4030D20037A480037FE74 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +69,11 @@
 		7381683E1FFDE7DF0011936D /* MenuSelectView */ = {
 			isa = PBXGroup;
 			children = (
+				73B4030A200379AB0037FE74 /* Cells */,
+				73B40309200379820037FE74 /* Controllers */,
 				738168551FFDE8240011936D /* MenuView */,
 				7381683F1FFDE7DF0011936D /* AppDelegate.h */,
 				738168401FFDE7DF0011936D /* AppDelegate.m */,
-				738168421FFDE7DF0011936D /* ViewController.h */,
-				738168431FFDE7DF0011936D /* ViewController.m */,
 				738168451FFDE7DF0011936D /* Main.storyboard */,
 				738168481FFDE7DF0011936D /* Assets.xcassets */,
 				7381684A1FFDE7DF0011936D /* LaunchScreen.storyboard */,
@@ -87,6 +92,25 @@
 				7381685A1FFDE89D0011936D /* PulldownMeunView.m */,
 			);
 			path = MenuView;
+			sourceTree = "<group>";
+		};
+		73B40309200379820037FE74 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				738168421FFDE7DF0011936D /* ViewController.h */,
+				738168431FFDE7DF0011936D /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		73B4030A200379AB0037FE74 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				73B4030B20037A480037FE74 /* UserTableViewCell.h */,
+				73B4030C20037A480037FE74 /* UserTableViewCell.m */,
+				73B4030D20037A480037FE74 /* UserTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73B4030F20037A480037FE74 /* UserTableViewCell.xib in Resources */,
 				7381684C1FFDE7DF0011936D /* LaunchScreen.storyboard in Resources */,
 				738168491FFDE7DF0011936D /* Assets.xcassets in Resources */,
 				738168471FFDE7DF0011936D /* Main.storyboard in Resources */,
@@ -162,6 +187,7 @@
 			files = (
 				738168441FFDE7DF0011936D /* ViewController.m in Sources */,
 				7381684F1FFDE7E00011936D /* main.m in Sources */,
+				73B4030E20037A480037FE74 /* UserTableViewCell.m in Sources */,
 				738168411FFDE7DF0011936D /* AppDelegate.m in Sources */,
 				738168581FFDE8530011936D /* ButtonTagView.m in Sources */,
 				7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */,

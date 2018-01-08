@@ -14,5 +14,6 @@
 @property (assign, nonatomic) NSInteger eachNum;
 @property (nonatomic, assign) NSInteger maxSelectNum;//最大选择个数
 @property (nonatomic, copy) void(^selectBlock)(ButtonTagView *tagView, NSArray *selectArray);
+@property (nonatomic, copy) void(^clickBlock)(int a);
 
 @end

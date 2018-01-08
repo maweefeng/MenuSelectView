@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="KGk-i7-Jjw" customClass="UserTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="93.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BUf-fR-gPO">
+                        <rect key="frame" x="10" y="10" width="73.5" height="73.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BUf-fR-gPO" secondAttribute="height" multiplier="1:1" id="Yy2-aK-8UI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家庭医生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAz-K4-jif">
+                        <rect key="frame" x="93.5" y="15" width="69.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="47u-MH-sSZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州市萧山区望园路金地花园22栋1单元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2X-ff-yCp">
+                        <rect key="frame" x="93" y="56" width="251.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJf-bP-M8k">
+                        <rect key="frame" x="362" y="36" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="IP4-k2-Dst"/>
+                            <constraint firstAttribute="width" constant="20" id="Qth-Ut-hvi"/>
+                        </constraints>
+                        <state key="normal" image="icon_xx_normal"/>
+                        <state key="selected" image="icon_xx_selecte"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iAz-K4-jif" firstAttribute="top" secondItem="BUf-fR-gPO" secondAttribute="top" constant="5" id="5qW-CP-0Jw"/>
+                    <constraint firstItem="BUf-fR-gPO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="5wa-td-ARa"/>
+                    <constraint firstItem="n2X-ff-yCp" firstAttribute="leading" secondItem="iAz-K4-jif" secondAttribute="leading" id="ClG-rk-JyZ"/>
+                    <constraint firstItem="BUf-fR-gPO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="J67-fh-lwZ"/>
+                    <constraint firstItem="n2X-ff-yCp" firstAttribute="top" secondItem="iAz-K4-jif" secondAttribute="bottom" constant="20" id="iqm-oL-4J1"/>
+                    <constraint firstItem="mJf-bP-M8k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qXr-U3-eim"/>
+                    <constraint firstItem="iAz-K4-jif" firstAttribute="leading" secondItem="BUf-fR-gPO" secondAttribute="trailing" constant="10" id="uhy-Ox-rrw"/>
+                    <constraint firstAttribute="trailing" secondItem="mJf-bP-M8k" secondAttribute="trailing" constant="8" id="wlJ-yh-b5K"/>
+                    <constraint firstAttribute="bottom" secondItem="BUf-fR-gPO" secondAttribute="bottom" constant="10" id="xSF-pR-Yvx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="addressL" destination="n2X-ff-yCp" id="xsf-Fd-L9u"/>
+                <outlet property="nameL" destination="iAz-K4-jif" id="ZNb-6g-Mn5"/>
+                <outlet property="userIconV" destination="BUf-fR-gPO" id="VSb-ZN-lLu"/>
+            </connections>
+            <point key="canvasLocation" x="27" y="146"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_xx_normal" width="14" height="14"/>
+        <image name="icon_xx_selecte" width="14" height="14"/>
+        <image name="userIcon" width="60" height="60"/>
+    </resources>
+</document>
