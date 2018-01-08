@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIButton* selectBtn;
 @property (strong, nonatomic) NSMutableArray *buttonTags;
 
-
+@property (nonatomic, copy) NSArray* simpleArray;
 @property (nonatomic, copy) NSMutableArray* tipArr;
 @property (nonatomic, copy) NSArray* textArray;
 
@@ -31,6 +31,15 @@
     }
     return _buttonTags;
 }
+
+-(NSArray *)simpleArray{
+    if (!_simpleArray) {
+        _simpleArray = [NSMutableArray arrayWithObjects:@"全部居民",@"我的关注", nil];
+    }
+    return _simpleArray;
+    
+}
+
 -(NSArray *)textArray{
     if (!_textArray) {
         
@@ -50,12 +59,13 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor whiteColor];
         [self initSubviews];
     }
     return self;
-}
 
+}
+#pragma mark 初始化三个按钮以及下拉视图
 -(void)initSubviews{
     CGFloat width = (ScreenWidth - 4 * margin)/3;
     
@@ -63,7 +73,6 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake((i+1)*margin+i*width, 0, width, 40);
         btn.tag = i;
-        [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitle:self.tipArr[i] forState:UIControlStateNormal];
@@ -73,7 +82,7 @@
         
     }
     UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 39, ScreenWidth, 1)];
-    line.backgroundColor = [UIColor grayColor];
+    line.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     [self addSubview:line];
     
     _tagView = [[SQButtonTagView alloc]initWithTotalTagsNum:30
@@ -83,24 +92,14 @@
                                                     Vmargin:10
                                                   tagHeight:30
                                                 tagTextFont:[UIFont systemFontOfSize:14.f]
-                                               tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5]
+                                               tagTextColor:[UIColor lightGrayColor]
                                        selectedTagTextColor:[UIColor whiteColor]
-                                    selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
+                                    selectedBackgroundColor:[UIColor colorWithRed:4/255.0 green:186/255.0 blue:255/255.0 alpha:1.0]];
     _tagView.maxSelectNum = 10;
     [self addSubview:_tagView];
     
 }
 
-
-
-
-
--(void)layoutSubviews{
-    
-    
-    
-    
-}
 -(void)click:(UIButton*)sender{
     CGFloat height;
     NSInteger eachNum;
@@ -111,8 +110,8 @@
     self.selectBtn = sender;
     self.selectBtn.selected = !self.selectBtn.selected;
     if (sender.tag == 1) {
-        eachNum = 0;
-        _tagView.eachNum = 0;
+        eachNum = 2;
+        _tagView.eachNum = 2;
         height = [SQButtonTagView returnViewHeightWithTagTexts:self.textArray
                                                      viewWidth:ScreenWidth-20
                                                        eachNum:eachNum
@@ -123,10 +122,9 @@
         if (sender.selected) {
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                if (frame.size.height == 40) {
-                    
-                    frame.size.height +=height;
-                }
+                
+                frame.size.height = 40+ height;
+                
                 self.frame = frame;
                 [_tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
                 
@@ -136,10 +134,9 @@
         }else{
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                if (frame.size.height != 40) {
-                    
+                
                     frame.size.height = 40;
-                }
+                
                 self.frame = frame;
                 _tagView.frame = CGRectMake(_tagView.frame.origin.x, _tagView.frame.origin.y, ScreenWidth, 0);
             } completion:^(BOOL finished) {
@@ -150,7 +147,40 @@
         }
         _tagView.tagTexts = self.textArray;
         
-    }else if (sender.tag ==2){
+    }else if (sender.tag == 0){
+        eachNum = 1;
+        _tagView.eachNum = 1;
+        height = [SQButtonTagView returnViewHeightWithTagTexts:self.simpleArray
+                                                     viewWidth:ScreenWidth-20
+                                                       eachNum:eachNum
+                                                       Hmargin:10
+                                                       Vmargin:10
+                                                     tagHeight:30
+                                                   tagTextFont:[UIFont systemFontOfSize:14.f]];
+        if (sender.selected) {
+            [UIView animateWithDuration:0.1 animations:^{
+                CGRect frame = self.frame;
+                frame.size.height =40+height;
+                self.frame = frame;
+                [_tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
+            }completion:^(BOOL finished) {
+                
+            }];
+        }else{
+            [UIView animateWithDuration:0.1 animations:^{
+                CGRect frame = self.frame;
+                frame.size.height = 40;
+                self.frame = frame;
+                _tagView.frame = CGRectMake(_tagView.frame.origin.x, _tagView.frame.origin.y, ScreenWidth, 0);
+                
+            }completion:^(BOOL finished) {
+                
+            }];
+            
+        }
+        _tagView.tagTexts = self.simpleArray;
+        
+    }else{
         eachNum = 3;
         _tagView.eachNum = 3;
         height = [SQButtonTagView returnViewHeightWithTagTexts:self.textArray
@@ -163,10 +193,7 @@
         if (sender.selected) {
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                if (frame.size.height == 40) {
-                    
-                    frame.size.height +=height;
-                }
+                frame.size.height =40+height;
                 self.frame = frame;
                 [_tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
             }completion:^(BOOL finished) {
@@ -175,10 +202,7 @@
         }else{
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                if (frame.size.height != 40) {
-                    
-                    frame.size.height = 40;
-                }
+                frame.size.height = 40;
                 self.frame = frame;
                 _tagView.frame = CGRectMake(_tagView.frame.origin.x, _tagView.frame.origin.y, ScreenWidth, 0);
                 
@@ -189,8 +213,6 @@
         }
         _tagView.tagTexts = self.textArray;
         
-    }else{
-
     }
 
 }

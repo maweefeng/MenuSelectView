@@ -7,8 +7,9 @@
 //
 
 #import "SQButtonTagView.h"
-
-
+#define bottomButtonH 50
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
 @interface SQButtonTagView ()
 
 @property (assign, nonatomic) NSInteger totalTagsNum;
@@ -22,8 +23,8 @@
 @property (strong, nonatomic) UIColor *selectedTagTextColor;
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
 @property (strong, nonatomic) NSMutableArray *selectArray;
-@property (nonatomic, strong) UIButton *allbutton;
-
+@property (nonatomic, strong) UIButton *resetButton;
+@property (nonatomic, strong) UIButton *confimButton;
 
 
 
@@ -45,10 +46,6 @@
     }
     return _selectArray;
 }
--(void)layoutSubviews{
-    
-    
-}
 - (id)initWithTotalTagsNum:(NSInteger)totalTagsNum
                  viewWidth:(CGFloat)viewWidth
                    eachNum:(NSInteger)eachNum
@@ -61,7 +58,7 @@
    selectedBackgroundColor:(UIColor *)selectedBackgroundColor{
     
     if (self = [super init]) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.layer.masksToBounds = YES;
         self.totalTagsNum = totalTagsNum;
         self.eachNum = eachNum;
@@ -74,22 +71,35 @@
         self.tagTextColor = tagTextColor;
         self.selectedTagTextColor = selectedTagTextColor;
         self.selectedBackgroundColor = selectedBackgroundColor;
-        self.allbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.allbutton.layer.cornerRadius = 2.5;
-        self.allbutton.layer.borderColor = tagTextColor.CGColor;
-        self.allbutton.layer.borderWidth = 0.5;
-        [self.allbutton setTitleColor:tagTextColor forState:UIControlStateNormal];
-        self.allbutton.titleLabel.font = tagTextFont;
-        [self.allbutton setBackgroundColor:[UIColor whiteColor]];
-        [self addSubview:self.allbutton];
+
+        self.resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.resetButton setTitle:@"重置" forState:UIControlStateNormal];
+        self.resetButton.layer.borderColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0].CGColor;
+        self.resetButton.layer.borderWidth = 0.5;
+        [self.resetButton setBackgroundColor:[UIColor whiteColor]];
+        [self.resetButton setTitleColor:tagTextColor forState:UIControlStateNormal];
+        [self.resetButton setTitleColor:self.selectedBackgroundColor forState:UIControlStateHighlighted];
+        self.resetButton.titleLabel.font = tagTextFont;
+        [self addSubview:self.resetButton];
+        [self.resetButton addTarget:self action:@selector(refreshAllButton) forControlEvents:UIControlEventTouchUpInside];
+
+        self.confimButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.confimButton setTitle:@"确定" forState:UIControlStateNormal];
+        self.confimButton.layer.borderColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0].CGColor;
+        [self.confimButton setTitleColor:self.selectedBackgroundColor forState:UIControlStateHighlighted];
+        self.confimButton.layer.borderWidth = 0.5;
+        [self.confimButton setBackgroundColor:[UIColor whiteColor]];
+        [self.confimButton setTitleColor:tagTextColor forState:UIControlStateNormal];
+        self.confimButton.titleLabel.font = tagTextFont;
+        [self addSubview:self.confimButton];
+        [self.confimButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+
 
         for (NSInteger i=0; i<totalTagsNum; i++) {
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.layer.cornerRadius = 2.5;
-            button.layer.borderColor = tagTextColor.CGColor;
-            button.layer.borderWidth = 0.5;
-            [button setBackgroundColor:[UIColor whiteColor]];
+            [button setBackgroundColor:[UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0]];
             [button setTitleColor:tagTextColor forState:UIControlStateNormal];
             button.titleLabel.font = tagTextFont;
             [self addSubview:button];
@@ -97,6 +107,8 @@
             button.tag = 101+i;
             [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         }
+        
+        
 
     }
     
@@ -106,13 +118,21 @@
 + (CGFloat)returnViewHeightWithTagTexts:(NSArray *)tagTexts viewWidth:(CGFloat)viewWidth eachNum:(NSInteger)eachNum Hmargin:(CGFloat)hmargin Vmargin:(CGFloat)vmargin tagHeight:(CGFloat)tagHeight tagTextFont:(UIFont *)tagTextFont{
     CGFloat Height = 0;
     if (eachNum>0) {
+        
         if (tagTexts.count>0) {
             NSInteger a = tagTexts.count/eachNum;
             NSInteger b = tagTexts.count%eachNum;
             if (b>0&&a>=0) {
                 a+=1;
             }
-            Height = 50+a*tagHeight + (a-1)*vmargin+20;
+            if (eachNum ==1) {
+                
+                Height = a*tagHeight + (a-1)*vmargin+20;
+            }else{
+                Height = bottomButtonH + a*tagHeight + (a-1)*vmargin+20;
+
+                
+            }
         }
         
     }else{
@@ -128,7 +148,7 @@
             }
         }
         
-        Height =50+ tagHeight*(row+1)+row*vmargin+20;
+        Height = tagHeight*(row+1)+row*vmargin+20;
     }
     
     return Height;
@@ -136,13 +156,11 @@
 
 
 - (void)setTagTexts:(NSArray *)tagTexts{
+    [self refreshAllButton];
+    _tagTexts = tagTexts;
     if (self.eachNum>0) {
         
         CGFloat with = (self.viewWidth-(self.eachNum-1)*self.hmargin)/self.eachNum;
-        
-        self.allbutton.frame = CGRectMake(self.hmargin, +self.vmargin, with, self.tagHeight);
-        [self.allbutton setTitle:@"全部服务包" forState:UIControlStateNormal];
-
 
         for (NSInteger i=0; i<self.buttonTags.count; i++) {
             UIButton *button = self.buttonTags[i];
@@ -150,7 +168,7 @@
                 [button setTitle:tagTexts[i] forState:UIControlStateNormal];
                 NSInteger a = i/self.eachNum;
                 NSInteger b = i%self.eachNum;
-                button.frame = (CGRect){self.hmargin+b*(with+self.hmargin),50+a*(self.tagHeight+self.vmargin),with,self.tagHeight};
+                button.frame = (CGRect){self.hmargin+b*(with+self.hmargin),self.vmargin+a*(self.tagHeight+self.vmargin),with,self.tagHeight};
                 [button setHidden:NO];
                 [button setTitle:tagTexts[i] forState:UIControlStateNormal];
                 
@@ -159,6 +177,14 @@
                 [button setHidden:YES];
             }
         }
+        
+        NSInteger a = self.tagTexts.count/self.eachNum;
+        NSInteger b = self.tagTexts.count%self.eachNum;
+        CGFloat originY = self.vmargin+(a+b)*(self.tagHeight+self.vmargin);
+        self.resetButton.frame = CGRectMake(0, originY, (ScreenWidth-1)/2, 50);
+        self.confimButton.frame = CGRectMake(CGRectGetMaxX(self.resetButton.frame), originY, (ScreenWidth-1)/2, 50);
+
+
     }else{
         
         __block CGFloat totalWidth = 0;
@@ -174,9 +200,9 @@
                 if (totalWidth-self.hmargin>self.viewWidth) {
                     totalWidth = itemWidth+self.hmargin;
                     row+=1;
-                    button.frame = CGRectMake(self.hmargin, 50+row*(self.tagHeight+self.vmargin), itemWidth, self.tagHeight);
+                    button.frame = CGRectMake(self.hmargin, self.vmargin+row*(self.tagHeight+self.vmargin), itemWidth, self.tagHeight);
                 }else{
-                    button.frame = CGRectMake(self.hmargin+totalWidth-itemWidth-self.hmargin, 50+row*(self.tagHeight+self.vmargin), itemWidth, self.tagHeight);
+                    button.frame = CGRectMake(self.hmargin+totalWidth-itemWidth-self.hmargin, self.vmargin+row*(self.tagHeight+self.vmargin), itemWidth, self.tagHeight);
                 }
                 [button setHidden:NO];
                 [button setTitle:tagTexts[idx] forState:UIControlStateNormal];
@@ -188,9 +214,7 @@
             
             
         }];
-        CGFloat itemWidth = [self sizeForText:@"全部居民" Font:self.tagTextFont size:CGSizeMake(MAXFLOAT, self.tagHeight) mode:NSLineBreakByWordWrapping].width+20;
-        self.allbutton.frame = CGRectMake(self.hmargin, self.vmargin, itemWidth, self.tagHeight);
-           [self.allbutton setTitle:@"全部居民" forState:UIControlStateNormal];
+
 
     }
     
@@ -224,21 +248,36 @@
 
 
 - (void)selectAction:(void (^)(SQButtonTagView * _Nonnull, NSArray * _Nonnull))block{
+    
     self.selectBlock = block;
+    
 }
 
 
+#pragma mark 重置所有选择的按钮
+-(void)refreshAllButton{
+    if (self.selectArray.count) {
+        
+        [self.selectArray removeAllObjects];
+    }
+    
+    for (UIButton *buttonTag in self.buttonTags) {
+            [buttonTag setBackgroundColor:[UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0]];
+            [buttonTag setTitleColor:self.tagTextColor forState:UIControlStateNormal];
+        
+    }
+}
+
+#pragma mark 按钮点击后刷新视图
 - (void)refreshView{
     
     for (UIButton *buttonTag in self.buttonTags) {
         if ([self.selectArray containsObject:@(buttonTag.tag-101)]) {
             [buttonTag setBackgroundColor:self.selectedBackgroundColor];
             [buttonTag setTitleColor:self.selectedTagTextColor forState:UIControlStateNormal];
-            buttonTag.layer.borderColor = self.selectedBackgroundColor.CGColor;
         }else{
-            [buttonTag setBackgroundColor:[UIColor whiteColor]];
+            [buttonTag setBackgroundColor:[UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0]];
             [buttonTag setTitleColor:self.tagTextColor forState:UIControlStateNormal];
-            buttonTag.layer.borderColor = self.tagTextColor.CGColor;
         }
     }
 }

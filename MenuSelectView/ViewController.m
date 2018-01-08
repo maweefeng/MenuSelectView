@@ -16,7 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PulldownMeunView * view = [[PulldownMeunView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 40)];
+    CGFloat originY ;
+    if (UIApplication.sharedApplication.statusBarFrame.size.height ==20) {
+        originY = 64;
+    }else{
+        originY = 88;
+        }
+    PulldownMeunView * view = [[PulldownMeunView alloc]initWithFrame:CGRectMake(0, originY, self.view.frame.size.width, 40)];
     [self.view addSubview:view];
     // Do any additional setup after loading the view, typically from a nib.
 }
