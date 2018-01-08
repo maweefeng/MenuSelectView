@@ -7,7 +7,7 @@
 //
 
 #import "PulldownMeunView.h"
-#import "SQButtonTagView.h"
+#import "ButtonTagView.h"
 #define margin 20
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -20,7 +20,7 @@
 @property (nonatomic, copy) NSArray* textArray;
 
 
-@property (nonatomic, strong) SQButtonTagView *tagView;
+@property (nonatomic, strong) ButtonTagView *tagView;
 
 
 @end
@@ -85,7 +85,7 @@
     line.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
     [self addSubview:line];
     
-    _tagView = [[SQButtonTagView alloc]initWithTotalTagsNum:30
+    _tagView = [[ButtonTagView alloc]initWithTotalTagsNum:30
                                                   viewWidth:ScreenWidth-20
                                                     eachNum:0
                                                     Hmargin:10
@@ -112,7 +112,7 @@
     if (sender.tag == 1) {
         eachNum = 2;
         _tagView.eachNum = 2;
-        height = [SQButtonTagView returnViewHeightWithTagTexts:self.textArray
+        height = [ButtonTagView returnViewHeightWithTagTexts:self.textArray
                                                      viewWidth:ScreenWidth-20
                                                        eachNum:eachNum
                                                        Hmargin:10
@@ -150,7 +150,7 @@
     }else if (sender.tag == 0){
         eachNum = 1;
         _tagView.eachNum = 1;
-        height = [SQButtonTagView returnViewHeightWithTagTexts:self.simpleArray
+        height = [ButtonTagView returnViewHeightWithTagTexts:self.simpleArray
                                                      viewWidth:ScreenWidth-20
                                                        eachNum:eachNum
                                                        Hmargin:10
@@ -183,7 +183,7 @@
     }else{
         eachNum = 3;
         _tagView.eachNum = 3;
-        height = [SQButtonTagView returnViewHeightWithTagTexts:self.textArray
+        height = [ButtonTagView returnViewHeightWithTagTexts:self.textArray
                                                      viewWidth:ScreenWidth-20
                                                        eachNum:eachNum
                                                        Hmargin:10

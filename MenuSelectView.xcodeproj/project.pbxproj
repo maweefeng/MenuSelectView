@@ -13,7 +13,7 @@
 		738168491FFDE7DF0011936D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738168481FFDE7DF0011936D /* Assets.xcassets */; };
 		7381684C1FFDE7DF0011936D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7381684A1FFDE7DF0011936D /* LaunchScreen.storyboard */; };
 		7381684F1FFDE7E00011936D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7381684E1FFDE7E00011936D /* main.m */; };
-		738168581FFDE8530011936D /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738168571FFDE8530011936D /* SQButtonTagView.m */; };
+		738168581FFDE8530011936D /* ButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738168571FFDE8530011936D /* ButtonTagView.m */; };
 		7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7381685A1FFDE89D0011936D /* PulldownMeunView.m */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +28,8 @@
 		7381684B1FFDE7DF0011936D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7381684D1FFDE7E00011936D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7381684E1FFDE7E00011936D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		738168561FFDE8530011936D /* SQButtonTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQButtonTagView.h; sourceTree = "<group>"; };
-		738168571FFDE8530011936D /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
+		738168561FFDE8530011936D /* ButtonTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTagView.h; sourceTree = "<group>"; };
+		738168571FFDE8530011936D /* ButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTagView.m; sourceTree = "<group>"; };
 		738168591FFDE89D0011936D /* PulldownMeunView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PulldownMeunView.h; sourceTree = "<group>"; };
 		7381685A1FFDE89D0011936D /* PulldownMeunView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PulldownMeunView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,8 +81,8 @@
 		738168551FFDE8240011936D /* MenuView */ = {
 			isa = PBXGroup;
 			children = (
-				738168561FFDE8530011936D /* SQButtonTagView.h */,
-				738168571FFDE8530011936D /* SQButtonTagView.m */,
+				738168561FFDE8530011936D /* ButtonTagView.h */,
+				738168571FFDE8530011936D /* ButtonTagView.m */,
 				738168591FFDE89D0011936D /* PulldownMeunView.h */,
 				7381685A1FFDE89D0011936D /* PulldownMeunView.m */,
 			);
@@ -163,7 +163,7 @@
 				738168441FFDE7DF0011936D /* ViewController.m in Sources */,
 				7381684F1FFDE7E00011936D /* main.m in Sources */,
 				738168411FFDE7DF0011936D /* AppDelegate.m in Sources */,
-				738168581FFDE8530011936D /* SQButtonTagView.m in Sources */,
+				738168581FFDE8530011936D /* ButtonTagView.m in Sources */,
 				7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
