@@ -2,15 +2,15 @@
 //  SQButtonTagView.m
 //  SQButtonTagView
 //
-//  Created by yangsq on 2017/9/26.
-//  Copyright © 2017年 yangsq. All rights reserved.
+//  Created by Weefeng Ma on 2018/1/4.
+//  Copyright © 2018年 maweefeng. All rights reserved.
 //
 
-#import "SQButtonTagView.h"
+#import "ButtonTagView.h"
 #define bottomButtonH 50
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
-@interface SQButtonTagView ()
+@interface ButtonTagView ()
 
 @property (assign, nonatomic) NSInteger totalTagsNum;
 @property (assign, nonatomic) CGFloat hmargin;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation SQButtonTagView
+@implementation ButtonTagView
 
 - (void)dealloc{
     _buttonTags = nil;
@@ -247,7 +247,7 @@
 }
 
 
-- (void)selectAction:(void (^)(SQButtonTagView * _Nonnull, NSArray * _Nonnull))block{
+- (void)selectAction:(void (^)(ButtonTagView * _Nonnull, NSArray * _Nonnull))block{
     
     self.selectBlock = block;
     

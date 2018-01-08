@@ -1,23 +1,23 @@
 //
-//  SQButtonTagView.h
-//  SQButtonTagView
+//  ButtonTagView.h
+//  ButtonTagView
 //
-//  Created by yangsq on 2017/9/26.
-//  Copyright © 2017年 yangsq. All rights reserved.
+//  Created by Weefeng Ma on 2018/1/4.
+//  Copyright © 2018年 maweefeng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 
 
-@interface SQButtonTagView : UIView
+@interface ButtonTagView : UIView
 
 NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray *tagTexts;
 @property (assign, nonatomic) NSInteger eachNum;
 @property (nonatomic, assign) NSInteger maxSelectNum;//最大选择个数
-@property (nonatomic, copy) void(^selectBlock)(SQButtonTagView *tagView, NSArray *selectArray);
+@property (nonatomic, copy) void(^selectBlock)(ButtonTagView *tagView, NSArray *selectArray);
 
 /**
  初始化方法
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //点击回调
-- (void)selectAction:(void(^)(SQButtonTagView *tagView, NSArray *selectArray))block;
+- (void)selectAction:(void(^)(ButtonTagView *tagView, NSArray *selectArray))block;
 
 
 NS_ASSUME_NONNULL_END
