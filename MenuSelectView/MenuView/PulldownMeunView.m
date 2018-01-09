@@ -15,13 +15,12 @@
 @property (nonatomic, strong) UIButton* selectBtn;
 @property (strong, nonatomic) NSMutableArray *buttonTags;
 @property (nonatomic, strong) UIView* coverView;
-
 @property (nonatomic, copy) NSArray* simpleArray;
 @property (nonatomic, copy) NSMutableArray* tipArr;
 @property (nonatomic, copy) NSArray* textArray;
-
-
 @property (nonatomic, strong) ButtonTagView *tagView;
+
+
 
 
 @end
@@ -44,7 +43,7 @@
 -(NSArray *)textArray{
     if (!_textArray) {
         
-        _textArray = @[@"kekenken",@"keken",@"knenenenk",@"kekeen",@"keken",@"knenenenkenkasdasd",@"ke",@"keken",@"knenenenkk",@"kekenken",@"ken0",@"knenenkenk",@"keken",@"kekenasdsadasd",@"knenenkk",@"kekenken",@"keken",@"knenenkenk",@"kekenken",@"keken",@"knenenkenk"];
+        _textArray = @[@"kekenken",@"keken",@"knenenenk",@"kekeen",@"keken",@"knenenenkenkasdasd",@"ke",@"keken",@"knenenenkk",@"kekenken",@"ken0",@"knenenkenk"];
         
     }
     return _textArray;
@@ -112,6 +111,25 @@
     
 }
 
+-(void)dissmissTapV{
+    
+    for (UIButton*btn in self.buttonTags) {
+        btn.selected = NO;
+    }
+    
+    [UIView animateWithDuration:0.1 animations:^{
+        CGRect frame = self.frame;
+        
+        frame.size.height = 40;
+        
+        self.frame = frame;
+        self.tagView.frame = CGRectMake(_tagView.frame.origin.x, self.tagView.frame.origin.y, ScreenWidth, 0);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+}
+
 -(void)click:(UIButton*)sender{
     CGFloat height;
     NSInteger eachNum;
@@ -130,7 +148,7 @@
     }
     if (sender.tag == 1) {
         eachNum = 2;
-        _tagView.eachNum = 2;
+        self.tagView.eachNum = 2;
         height = [ButtonTagView returnViewHeightWithTagTexts:self.textArray
                                                      viewWidth:ScreenWidth-20
                                                        eachNum:eachNum
@@ -145,7 +163,7 @@
                 frame.size.height = 40+ height;
                 
                 self.frame = frame;
-                [_tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
+                [self.tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
                 
             }completion:^(BOOL finished) {
                 
@@ -157,7 +175,7 @@
                     frame.size.height = 40;
                 
                 self.frame = frame;
-                _tagView.frame = CGRectMake(_tagView.frame.origin.x, _tagView.frame.origin.y, ScreenWidth, 0);
+                self.tagView.frame = CGRectMake(_tagView.frame.origin.x, self.tagView.frame.origin.y, ScreenWidth, 0);
             } completion:^(BOOL finished) {
                 
             }];

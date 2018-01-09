@@ -16,4 +16,8 @@
 @property (nonatomic, copy) void(^selectBlock)(ButtonTagView *tagView, NSArray *selectArray);
 @property (nonatomic, copy) void(^clickBlock)(int a);
 
+/**
+ 点击蒙版消失
+ */
+-(void)dissmissTapV;
 @end

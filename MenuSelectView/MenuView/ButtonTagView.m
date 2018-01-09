@@ -111,7 +111,6 @@
         
 
     }
-    
     return self;
 }
 
@@ -183,7 +182,7 @@
         CGFloat originY = self.vmargin+(a+b)*(self.tagHeight+self.vmargin);
         self.resetButton.frame = CGRectMake(0, originY, (ScreenWidth-1)/2, 50);
         self.confimButton.frame = CGRectMake(CGRectGetMaxX(self.resetButton.frame), originY, (ScreenWidth-1)/2, 50);
-
+  
 
     }else{
         
@@ -260,12 +259,14 @@
         
         [self.selectArray removeAllObjects];
     }
-    
-    for (UIButton *buttonTag in self.buttonTags) {
-            [buttonTag setBackgroundColor:[UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0]];
-            [buttonTag setTitleColor:self.tagTextColor forState:UIControlStateNormal];
-        
+    //默认选中第一个
+    [self.selectArray addObject:@(0)];
+    //回调
+    if (self.selectBlock) {
+        self.selectBlock(self, self.selectArray.copy);
     }
+    
+    [self refreshView];
 }
 
 #pragma mark 按钮点击后刷新视图

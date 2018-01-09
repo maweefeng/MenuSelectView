@@ -8,10 +8,13 @@
 #import "UserTableViewCell.h"
 #import "ViewController.h"
 #import "PulldownMeunView.h"
+#import "UserViewController.h"
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) PulldownMeunView * menuView ;
 
+@property (nonatomic, strong) UIView * alparV ;
 
 @end
 
@@ -39,6 +42,7 @@
     }
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, originY+40, self.view.frame.size.width, self.view.frame.size.height-originY-40)];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"UserTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 
@@ -48,12 +52,16 @@
     self.tableView.tableHeaderView = bar;
     
     PulldownMeunView * view = [[PulldownMeunView alloc]initWithFrame:CGRectMake(0, originY, self.view.frame.size.width, 40)];
+    self.menuView = view;
     [self.view addSubview:view];
     
     UIView * alparV = [[UIView alloc]initWithFrame:self.tableView.frame];
     alparV.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view insertSubview:alparV belowSubview:view];
     alparV.hidden = YES;
+    self.alparV = alparV;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [alparV addGestureRecognizer:tap];
     [view setClickBlock:^(int a) {
         if(a==0){
             alparV.hidden = YES;
@@ -64,6 +72,14 @@
     }];
      
 }
+#pragma mark 点击隐藏
+-(void)tap{
+    
+    self.alparV.hidden = YES;
+    
+    [self.menuView dissmissTapV];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 1;
@@ -73,6 +89,8 @@
     return 20;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UserViewController * vc = [[UserViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"%lu",indexPath.row);
     
 }
