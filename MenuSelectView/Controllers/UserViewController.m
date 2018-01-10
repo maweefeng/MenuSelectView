@@ -10,7 +10,9 @@
 #import "ButtonAlignView.h"
 #define Scrollwidth SCREENWIDTH-40
 #define ScrollHeight SCREENHEIGHT
-
+#define kMargin 20
+#define horitalmargin 20
+#define verticalmargin 20
 @interface UserViewController ()
 
 @property (nonatomic, strong)  ButtonAlignView * v ;
@@ -37,7 +39,7 @@
     if (isiPhoneX) {
         originY = 88;
     }
-    self.mainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(20, originY+20, Scrollwidth, ScrollHeight-safeOffset-originY-30)];
+    self.mainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(kMargin, originY+kMargin, Scrollwidth, ScrollHeight-safeOffset-originY-30)];
     self.mainScroll.showsVerticalScrollIndicator = NO;
     self.mainScroll.layer.cornerRadius = 5;
     self.mainScroll.layer.masksToBounds = YES;
@@ -55,11 +57,11 @@
     line.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
     [self.mainScroll addSubview:line];
     
-    ButtonAlignView * v = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    ButtonAlignView * v = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     self.v = v;
     [self.mainScroll addSubview:v];
     
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin];
     [v setFrame:CGRectMake(20, CGRectGetMaxY(line.frame), Scrollwidth-40, H)];
     [v setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);
@@ -73,11 +75,11 @@
     
     LeftlineLabel * label = [[LeftlineLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+10, Scrollwidth, 20) Title:@"在线咨询" margin:30 lineOrigin:0 textColor:[UIColor colorWithRed:51/255.0 green:73/255.0 blue:109/255.0 alpha:1.0] textFont:[UIFont systemFontOfSize:12]];
     [self.mainScroll addSubview:label];
-    ButtonAlignView * secondv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    ButtonAlignView * secondv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     self.secondv = secondv;
     [self.mainScroll addSubview:secondv];
     
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin];
     [self.secondv  setFrame:CGRectMake(20, CGRectGetMaxY(label.frame), Scrollwidth-40, H)];
     [self.secondv  setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);
@@ -91,10 +93,10 @@
     LeftlineLabel * label = [[LeftlineLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+10, Scrollwidth, 20) Title:@"家医服务" margin:30 lineOrigin:0 textColor:[UIColor colorWithRed:51/255.0 green:73/255.0 blue:109/255.0 alpha:1.0] textFont:[UIFont systemFontOfSize:12]];
   
     [self.mainScroll addSubview:label];
-    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] imageNameArr:@[@"1",@"2",@"3",@"1",@"2"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] imageNameArr:@[@"1",@"2",@"3",@"1",@"2"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     [self.mainScroll addSubview:thirdv];
     self.thirdv = thirdv;
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin];
     [self.thirdv  setFrame:CGRectMake(20, CGRectGetMaxY(label.frame), Scrollwidth-40, H)];
     [self.thirdv  setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);

@@ -222,15 +222,26 @@
 }
 
 
+#pragma mark 点击按钮
 
 - (void)buttonAction:(UIButton *)button{
     
    
     NSInteger tag = button.tag-101;
     
+    
     if ([self.selectArray containsObject:@(tag)]) {
         [self.selectArray removeObject:@(tag)];
     }else{
+        if (tag !=0 && [self.selectArray containsObject:@(0)]) {
+            //已经包括全部了 再去点击其他的按钮
+            [self.selectArray removeObject:@(0)];
+            
+        }
+        if (tag ==0) {
+            //如果点击第一个全部 那么把其他的选中状态全部取消
+            [self.selectArray removeAllObjects];
+        }
         if (self.selectArray.count==self.maxSelectNum&&self.maxSelectNum>0) {
             NSLog(@"最多选择%@",[NSString stringWithFormat:@"%ld个",self.maxSelectNum]);
         }else{
