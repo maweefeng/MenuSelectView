@@ -53,6 +53,9 @@
     
     PulldownMeunView * view = [[PulldownMeunView alloc]initWithFrame:CGRectMake(0, originY, self.view.frame.size.width, 40)];
     self.menuView = view;
+    [view setSelectBlock:^(ButtonTagView *tagView, NSArray *selectArray) {
+        [self tap];
+    }];
     [self.view addSubview:view];
     
     UIView * alparV = [[UIView alloc]initWithFrame:self.tableView.frame];

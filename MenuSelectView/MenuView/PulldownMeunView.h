@@ -11,9 +11,25 @@
 
 @interface PulldownMeunView : UIView
 @property (nonatomic, strong) NSArray *tagTexts;
+
+/**
+ 每行个数
+ */
 @property (assign, nonatomic) NSInteger eachNum;
-@property (nonatomic, assign) NSInteger maxSelectNum;//最大选择个数
+
+/**
+ 最大选择个数
+ */
+@property (nonatomic, assign) NSInteger maxSelectNum;
+
+/**
+ 把选中的标签回调出去
+*/
 @property (nonatomic, copy) void(^selectBlock)(ButtonTagView *tagView, NSArray *selectArray);
+
+/**
+ 点击展开收起按钮
+ */
 @property (nonatomic, copy) void(^clickBlock)(int a);
 
 /**

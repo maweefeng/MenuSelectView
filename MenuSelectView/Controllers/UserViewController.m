@@ -5,10 +5,14 @@
 //  Created by Weefeng Ma on 2018/1/9.
 //  Copyright © 2018年 maweefeng. All rights reserved.
 //
-
+#import "LeftlineLabel.h"
 #import "UserViewController.h"
 #import "ButtonAlignView.h"
+#define Scrollwidth SCREENWIDTH-40
+#define ScrollHeight SCREENHEIGHT
+
 @interface UserViewController ()
+
 @property (nonatomic, strong)  ButtonAlignView * v ;
 @property (nonatomic, strong)  UIScrollView * mainScroll ;
 @property (nonatomic, strong) ButtonAlignView * secondv ;
@@ -17,77 +21,85 @@
 @end
 
 @implementation UserViewController
--(void)viewWillAppear:(BOOL)animated{
-    
-    
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    UIScrollView * mainScroll = [[UIScrollView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:mainScroll];
-    
-    self.mainScroll = mainScroll;
-    // Instantiate the nib content without any reference to it.
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:nil options:nil];
-    
-    // Find the view among nib contents (not too hard assuming there is only one view in it).
-    UIView *plainView = [nibContents lastObject];
-    
-    // Some hardcoded layout.
-    plainView.frame = (CGRect){0, 0, self.view.frame.size.width,self.view.frame.size.width/375 * 100 };
-    
-    // Add to the view hierarchy (thus retain).
-    [mainScroll addSubview:plainView];
-    
-    ButtonAlignView * v = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:self.view.frame.size.width-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
-    self.v = v;
-    [mainScroll addSubview:v];
+    self.title = @"居民主页";
+    [self generalView];
+    [self onlineConsult];
+    [self familyDoctorServer];
+}
 
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:self.view.frame.size.width-40  eachNum:3 Hmargin:20 Vmargin:20];
-    [v setFrame:CGRectMake(20, CGRectGetMaxY(plainView.frame), self.view.frame.size.width-40, H)];
+-(void)generalView{
+
+    self.view.backgroundColor = [UIColor whiteColor];
+    CGFloat originY = 64;
+    if (isiPhoneX) {
+        originY = 88;
+    }
+    self.mainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(20, originY+20, Scrollwidth, ScrollHeight-safeOffset-originY-30)];
+    self.mainScroll.showsVerticalScrollIndicator = NO;
+    self.mainScroll.layer.cornerRadius = 5;
+    self.mainScroll.layer.masksToBounds = YES;
+    self.view.backgroundColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+    self.mainScroll.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.mainScroll];
+    
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"UserTableViewCell" owner:nil options:nil];
+    UIView *plainView = [nibContents lastObject];
+    plainView.frame = (CGRect){0, 0, Scrollwidth,self.view.frame.size.width/375 * 100 };
+    [self.mainScroll addSubview:plainView];
+    
+    
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(plainView.frame), Scrollwidth-40, 1)];
+    line.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    [self.mainScroll addSubview:line];
+    
+    ButtonAlignView * v = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    self.v = v;
+    [self.mainScroll addSubview:v];
+    
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    [v setFrame:CGRectMake(20, CGRectGetMaxY(line.frame), Scrollwidth-40, H)];
     [v setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);
     }];
-  
-    [self initZaixianzixunView];
-    [self family];
+
 }
--(void)initZaixianzixunView{
+-(void)onlineConsult{
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.v.frame), Scrollwidth, 6)];
+    line.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    [self.mainScroll addSubview:line];
     
-    UILabel * zixun = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(self.v.frame), 100, 20)];
-    zixun.text = @"在线咨询";
-    zixun.font = [UIFont systemFontOfSize:12];
-    [self.mainScroll addSubview:zixun];
-    ButtonAlignView * secondv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:self.view.frame.size.width-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    LeftlineLabel * label = [[LeftlineLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+10, Scrollwidth, 20) Title:@"在线咨询" margin:30 lineOrigin:0 textColor:[UIColor colorWithRed:51/255.0 green:73/255.0 blue:109/255.0 alpha:1.0] textFont:[UIFont systemFontOfSize:12]];
+    [self.mainScroll addSubview:label];
+    ButtonAlignView * secondv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频"] imageNameArr:@[@"1",@"2",@"3"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     self.secondv = secondv;
     [self.mainScroll addSubview:secondv];
     
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:self.view.frame.size.width-40  eachNum:3 Hmargin:20 Vmargin:20];
-    [self.secondv  setFrame:CGRectMake(20, CGRectGetMaxY(zixun.frame), self.view.frame.size.width-40, H)];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频"] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    [self.secondv  setFrame:CGRectMake(20, CGRectGetMaxY(label.frame), Scrollwidth-40, H)];
     [self.secondv  setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);
     }];
     
 }
--(void)family{
-    
-    
-    UILabel * zixun = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(self.secondv.frame), 100, 20)];
-    zixun.text = @"家医服务";
-    zixun.font = [UIFont systemFontOfSize:12];
-
-    [self.mainScroll addSubview:zixun];
-    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] imageNameArr:@[@"1",@"2",@"3",@"1",@"2"] viewWidth:self.view.frame.size.width-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+-(void)familyDoctorServer{
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.secondv.frame), Scrollwidth, 6)];
+    line.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    [self.mainScroll addSubview:line];
+    LeftlineLabel * label = [[LeftlineLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+10, Scrollwidth, 20) Title:@"家医服务" margin:30 lineOrigin:0 textColor:[UIColor colorWithRed:51/255.0 green:73/255.0 blue:109/255.0 alpha:1.0] textFont:[UIFont systemFontOfSize:12]];
+  
+    [self.mainScroll addSubview:label];
+    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] imageNameArr:@[@"1",@"2",@"3",@"1",@"2"] viewWidth:Scrollwidth-40 eachNum:3 Hmargin:20 Vmargin:20  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     [self.mainScroll addSubview:thirdv];
     self.thirdv = thirdv;
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] viewWidth:self.view.frame.size.width-40  eachNum:3 Hmargin:20 Vmargin:20];
-    [self.thirdv  setFrame:CGRectMake(20, CGRectGetMaxY(zixun.frame), self.view.frame.size.width-40, H)];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"发起会话",@"发起语言",@"发起视频",@"发起会话",@"发起语言",] viewWidth:Scrollwidth-40  eachNum:3 Hmargin:20 Vmargin:20];
+    [self.thirdv  setFrame:CGRectMake(20, CGRectGetMaxY(label.frame), Scrollwidth-40, H)];
     [self.thirdv  setClickBlock:^(NSString *titleStr) {
         NSLog(@"%@",titleStr);
     }];
-    self.mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, CGRectGetMaxY(self.thirdv.frame));
+    self.mainScroll.contentSize = CGSizeMake(Scrollwidth, CGRectGetMaxY(self.thirdv.frame));
     
 }
 - (void)didReceiveMemoryWarning {
@@ -95,14 +107,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

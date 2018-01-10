@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州市萧山区望园路金地花园22栋1单元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2X-ff-yCp">
-                        <rect key="frame" x="83" y="64" width="216.5" height="14.5"/>
+                        <rect key="frame" x="83" y="64" width="287" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -56,6 +56,7 @@
                     <constraint firstItem="BUf-fR-gPO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="5wa-td-ARa"/>
                     <constraint firstItem="n2X-ff-yCp" firstAttribute="leading" secondItem="iAz-K4-jif" secondAttribute="leading" id="ClG-rk-JyZ"/>
                     <constraint firstItem="BUf-fR-gPO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="J67-fh-lwZ"/>
+                    <constraint firstAttribute="trailing" secondItem="n2X-ff-yCp" secondAttribute="trailing" constant="20" id="Y8K-2K-fzC"/>
                     <constraint firstItem="mJf-bP-M8k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qXr-U3-eim"/>
                     <constraint firstItem="iAz-K4-jif" firstAttribute="leading" secondItem="BUf-fR-gPO" secondAttribute="trailing" constant="10" id="uhy-Ox-rrw"/>
                     <constraint firstItem="n2X-ff-yCp" firstAttribute="bottom" secondItem="BUf-fR-gPO" secondAttribute="bottom" id="vUs-Gs-7YG"/>

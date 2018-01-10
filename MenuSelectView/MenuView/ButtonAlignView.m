@@ -151,7 +151,7 @@
         [button setImage:[UIImage imageNamed:self.buttonImageArr[i]] forState:UIControlStateNormal];
         [button setTitle:self.buttonNameArr[i] forState:UIControlStateNormal];
         button.titleLabel.font = self.tagTextFont;
-//        [button.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [button.titleLabel setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:button];
         [self.buttonArr addObject:button];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];

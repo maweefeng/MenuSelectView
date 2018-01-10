@@ -13,8 +13,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray *tagTexts;
+
+/**
+ 每行个数
+ */
 @property (assign, nonatomic) NSInteger eachNum;
-@property (nonatomic, assign) NSInteger maxSelectNum;//最大选择个数
+
+/**
+ 最大选择个数
+ */
+@property (nonatomic, assign) NSInteger maxSelectNum;
+
+/**
+ 把选中的标签回调出去
+ */
 @property (nonatomic, copy) void(^selectBlock)(ButtonTagView *tagView, NSArray *selectArray);
 
 /**
@@ -50,10 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
                                 Vmargin:(CGFloat)vmargin
                               tagHeight:(CGFloat)tagHeight
                             tagTextFont:(UIFont *)tagTextFont;
-
-
-//点击回调
-- (void)selectAction:(void(^)(ButtonTagView *tagView, NSArray *selectArray))block;
 
 
 NS_ASSUME_NONNULL_END

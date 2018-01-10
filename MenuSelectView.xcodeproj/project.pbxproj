@@ -20,6 +20,8 @@
 		73B4031220047D450037FE74 /* ButtonAlignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B4031120047D450037FE74 /* ButtonAlignView.m */; };
 		73B40315200484190037FE74 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B40314200484190037FE74 /* UserViewController.m */; };
 		73B4031C2004A2970037FE74 /* PositionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B4031B2004A2960037FE74 /* PositionButton.m */; };
+		73B4031F2005A4DB0037FE74 /* LeftlineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B4031E2005A4DB0037FE74 /* LeftlineLabel.m */; };
+		73B403242005AF5E0037FE74 /* UIDevice+PHiPhoneX.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B403232005AF5E0037FE74 /* UIDevice+PHiPhoneX.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,11 @@
 		73B40314200484190037FE74 /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		73B4031A2004A2960037FE74 /* PositionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionButton.h; sourceTree = "<group>"; };
 		73B4031B2004A2960037FE74 /* PositionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionButton.m; sourceTree = "<group>"; };
+		73B4031D2005A4DB0037FE74 /* LeftlineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftlineLabel.h; sourceTree = "<group>"; };
+		73B4031E2005A4DB0037FE74 /* LeftlineLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftlineLabel.m; sourceTree = "<group>"; };
+		73B403202005AEEA0037FE74 /* Pch-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pch-Header.h"; sourceTree = "<group>"; };
+		73B403222005AF5E0037FE74 /* UIDevice+PHiPhoneX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+PHiPhoneX.h"; sourceTree = "<group>"; };
+		73B403232005AF5E0037FE74 /* UIDevice+PHiPhoneX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+PHiPhoneX.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +85,7 @@
 		7381683E1FFDE7DF0011936D /* MenuSelectView */ = {
 			isa = PBXGroup;
 			children = (
+				73B403212005AF4E0037FE74 /* Category */,
 				73B4030A200379AB0037FE74 /* Cells */,
 				73B40309200379820037FE74 /* Controllers */,
 				738168551FFDE8240011936D /* MenuView */,
@@ -88,6 +96,7 @@
 				7381684A1FFDE7DF0011936D /* LaunchScreen.storyboard */,
 				7381684D1FFDE7E00011936D /* Info.plist */,
 				7381684E1FFDE7E00011936D /* main.m */,
+				73B403202005AEEA0037FE74 /* Pch-Header.h */,
 			);
 			path = MenuSelectView;
 			sourceTree = "<group>";
@@ -103,6 +112,8 @@
 				73B4031120047D450037FE74 /* ButtonAlignView.m */,
 				73B4031A2004A2960037FE74 /* PositionButton.h */,
 				73B4031B2004A2960037FE74 /* PositionButton.m */,
+				73B4031D2005A4DB0037FE74 /* LeftlineLabel.h */,
+				73B4031E2005A4DB0037FE74 /* LeftlineLabel.m */,
 			);
 			path = MenuView;
 			sourceTree = "<group>";
@@ -126,6 +137,15 @@
 				73B4030D20037A480037FE74 /* UserTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		73B403212005AF4E0037FE74 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				73B403222005AF5E0037FE74 /* UIDevice+PHiPhoneX.h */,
+				73B403232005AF5E0037FE74 /* UIDevice+PHiPhoneX.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +223,12 @@
 				738168441FFDE7DF0011936D /* ViewController.m in Sources */,
 				7381684F1FFDE7E00011936D /* main.m in Sources */,
 				73B4030E20037A480037FE74 /* UserTableViewCell.m in Sources */,
+				73B403242005AF5E0037FE74 /* UIDevice+PHiPhoneX.m in Sources */,
 				738168411FFDE7DF0011936D /* AppDelegate.m in Sources */,
 				738168581FFDE8530011936D /* ButtonTagView.m in Sources */,
 				73B40315200484190037FE74 /* UserViewController.m in Sources */,
 				7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */,
+				73B4031F2005A4DB0037FE74 /* LeftlineLabel.m in Sources */,
 				73B4031220047D450037FE74 /* ButtonAlignView.m in Sources */,
 				73B4031C2004A2970037FE74 /* PositionButton.m in Sources */,
 			);
@@ -344,6 +366,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y36UFE75E8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuSelectView/Pch-Header.h";
 				INFOPLIST_FILE = MenuSelectView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maweefeng.MenuSelectView;
@@ -358,6 +382,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y36UFE75E8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuSelectView/Pch-Header.h";
 				INFOPLIST_FILE = MenuSelectView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maweefeng.MenuSelectView;

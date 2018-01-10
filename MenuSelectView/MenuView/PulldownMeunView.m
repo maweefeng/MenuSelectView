@@ -107,6 +107,12 @@
                                        selectedTagTextColor:[UIColor whiteColor]
                                     selectedBackgroundColor:[UIColor colorWithRed:4/255.0 green:186/255.0 blue:255/255.0 alpha:1.0]];
     _tagView.maxSelectNum = 10;
+    __weak PulldownMeunView * weakself= self;
+
+    [_tagView setSelectBlock:^(ButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
+        [weakself dissmissTapV];
+        weakself.selectBlock(tagView, selectArray);
+    }];
     [self addSubview:_tagView];
     
 }
@@ -119,9 +125,7 @@
     
     [UIView animateWithDuration:0.1 animations:^{
         CGRect frame = self.frame;
-        
         frame.size.height = 40;
-        
         self.frame = frame;
         self.tagView.frame = CGRectMake(_tagView.frame.origin.x, self.tagView.frame.origin.y, ScreenWidth, 0);
     } completion:^(BOOL finished) {
@@ -143,8 +147,6 @@
         self.clickBlock(1);
     }else{
         self.clickBlock(0);
-
-
     }
     if (sender.tag == 1) {
         eachNum = 2;
@@ -159,9 +161,7 @@
         if (sender.selected) {
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                
                 frame.size.height = 40+ height;
-                
                 self.frame = frame;
                 [self.tagView setFrame:CGRectMake(0, 40, ScreenWidth, height)];
                 
@@ -171,9 +171,7 @@
         }else{
             [UIView animateWithDuration:0.1 animations:^{
                 CGRect frame = self.frame;
-                
-                    frame.size.height = 40;
-                
+                frame.size.height = 40;
                 self.frame = frame;
                 self.tagView.frame = CGRectMake(_tagView.frame.origin.x, self.tagView.frame.origin.y, ScreenWidth, 0);
             } completion:^(BOOL finished) {

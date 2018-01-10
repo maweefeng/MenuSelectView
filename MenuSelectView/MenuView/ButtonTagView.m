@@ -92,7 +92,7 @@
         [self.confimButton setTitleColor:tagTextColor forState:UIControlStateNormal];
         self.confimButton.titleLabel.font = tagTextFont;
         [self addSubview:self.confimButton];
-        [self.confimButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.confimButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
 
 
         for (NSInteger i=0; i<totalTagsNum; i++) {
@@ -237,10 +237,7 @@
             [self.selectArray addObject:@(tag)];
         }
     }
-    
-    if (self.selectBlock) {
-        self.selectBlock(self, self.selectArray.copy);
-    }
+ 
     
     [self refreshView];
 }
@@ -252,6 +249,15 @@
     
 }
 
+#pragma mark 确定选择
+-(void)doneAction{
+    
+    //回调
+    if (self.selectBlock) {
+        self.selectBlock(self, self.selectArray.copy);
+    }
+   
+}
 
 #pragma mark 重置所有选择的按钮
 -(void)refreshAllButton{
@@ -261,10 +267,7 @@
     }
     //默认选中第一个
     [self.selectArray addObject:@(0)];
-    //回调
-    if (self.selectBlock) {
-        self.selectBlock(self, self.selectArray.copy);
-    }
+   
     
     [self refreshView];
 }
