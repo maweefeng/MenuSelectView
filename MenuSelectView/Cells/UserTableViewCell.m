@@ -17,7 +17,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor clearColor];
     // Initialization code
+}
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    self.userIconV.layer.cornerRadius = self.userIconV.bounds.size.width/2;
+    self.userIconV.layer.masksToBounds = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
