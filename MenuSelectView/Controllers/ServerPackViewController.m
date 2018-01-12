@@ -30,12 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"购物车";
+    self.title = @"追加个性包";
     self.dataArray = [[NSMutableArray alloc]init];
     
-//    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-//    [self.navigationController.navigationBar setTitleTextAttributes:
-//     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.allPrice = 0.00;
     [self createSubViews];
     [self initData];
@@ -50,12 +47,14 @@
     for (int i = 0; i<10; i++)
     {
         NSMutableDictionary *infoDict = [[NSMutableDictionary alloc]init];
-        [infoDict setValue:@"img.png" forKey:@"imageName"];
-        [infoDict setValue:@"小皮皮" forKey:@"goodsTitle"];
-        [infoDict setValue:@"Miss?怎么可能..." forKey:@"goodsType"];
+        [infoDict setValue:@"服务包图标" forKey:@"imageName"];
+        [infoDict setValue:@"社会基础服务包A" forKey:@"goodsTitle"];
+        [infoDict setValue:@"服务周期:2017/12/12至2018年12/11" forKey:@"goodsType"];
         [infoDict setValue:@"50.00" forKey:@"goodsPrice"];
+        [infoDict setValue:@"0.00" forKey:@"goodsAllPrice"];
+
         [infoDict setValue:[NSNumber numberWithBool:NO] forKey:@"selectState"];
-        [infoDict setValue:[NSNumber numberWithInt:1] forKey:@"goodsNum"];
+        [infoDict setValue:[NSNumber numberWithInt:0] forKey:@"goodsNum"];
         
         ShoppingModel *goodsModel = [[ShoppingModel alloc]initWithShopDict:infoDict];
         
@@ -68,7 +67,7 @@
 -(void)createSubViews{
     
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0 , kScreenWidth, kScreenHeight-50) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0 , kScreenWidth, kScreenHeight-50-safeOffset) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -169,8 +168,6 @@
         
     }
     
-    cell.backgroundColor = RGBACOLOR(224, 224, 224, 1.0);
-    
     cell.delegate = self;
     cell.shoppingModel = self.dataArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -184,7 +181,7 @@
     
     
     
-    return 110;
+    return SCREENWIDTH/375 * 120;
 }
 
 
@@ -229,9 +226,11 @@
             //做减法
             //先获取到当期行数据源内容，改变数据源内容，刷新表格
             ShoppingModel *model = self.dataArray[index.row];
-            if (model.goodsNum > 1)
+            if (model.goodsNum > 0)
             {
                 model.goodsNum --;
+                
+                 model.goodsAllPrice = [NSString stringWithFormat:@"%.2f",model.goodsNum *[model.goodsPrice floatValue]];
             }
         }
             break;
@@ -240,6 +239,7 @@
             //做加法
             ShoppingModel *model = self.dataArray[index.row];
             model.goodsNum ++;
+            model.goodsAllPrice = [NSString stringWithFormat:@"%.2f",model.goodsNum *[model.goodsPrice floatValue]];
         }
             break;
         default:

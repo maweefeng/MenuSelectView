@@ -28,6 +28,7 @@
 		73FC40BD20071C5100414C59 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FC40BC20071C5100414C59 /* UIViewExt.m */; };
 		73FC40C120071C6B00414C59 /* ShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FC40C020071C6B00414C59 /* ShoppingModel.m */; };
 		73FC40C7200724D900414C59 /* UIButton+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FC40C6200724D900414C59 /* UIButton+Position.m */; };
+		73FC40FD20086FA300414C59 /* UIColor+GHColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FC40FC20086FA300414C59 /* UIColor+GHColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		73FC40C020071C6B00414C59 /* ShoppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingModel.m; sourceTree = "<group>"; };
 		73FC40C5200724D900414C59 /* UIButton+Position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Position.h"; sourceTree = "<group>"; };
 		73FC40C6200724D900414C59 /* UIButton+Position.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Position.m"; sourceTree = "<group>"; };
+		73FC40FB20086FA300414C59 /* UIColor+GHColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GHColors.h"; sourceTree = "<group>"; };
+		73FC40FC20086FA300414C59 /* UIColor+GHColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GHColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 		73B403212005AF4E0037FE74 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				73FC40FB20086FA300414C59 /* UIColor+GHColors.h */,
+				73FC40FC20086FA300414C59 /* UIColor+GHColors.m */,
 				73FC40BB20071C5100414C59 /* UIViewExt.h */,
 				73FC40BC20071C5100414C59 /* UIViewExt.m */,
 				73B403222005AF5E0037FE74 /* UIDevice+PHiPhoneX.h */,
@@ -270,6 +275,7 @@
 				73FC40BD20071C5100414C59 /* UIViewExt.m in Sources */,
 				738168581FFDE8530011936D /* ButtonTagView.m in Sources */,
 				73B40327200619840037FE74 /* ServerPackViewController.m in Sources */,
+				73FC40FD20086FA300414C59 /* UIColor+GHColors.m in Sources */,
 				73B40315200484190037FE74 /* UserViewController.m in Sources */,
 				7381685B1FFDE89D0011936D /* PulldownMeunView.m in Sources */,
 				73B4031F2005A4DB0037FE74 /* LeftlineLabel.m in Sources */,

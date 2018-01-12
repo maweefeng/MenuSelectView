@@ -26,16 +26,17 @@
 -(void)createSubViews{
     
     self.jianBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.jianBtn.frame = CGRectMake(0,0, 26, 22);
+    self.jianBtn.frame = CGRectMake(0,0, SCREENWIDTH/375 * 28, SCREENWIDTH/375 * 28);
     [self.jianBtn addTarget:self action:@selector(deleteBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.jianBtn.tag = 11;
     [self.jianBtn setImage:IMAGENAMED(@"jian_icon") forState:UIControlStateNormal];
     
     [self addSubview:self.jianBtn];
     
-    UIImageView *numberBg = [[UIImageView alloc]initWithFrame:CGRectMake(self.jianBtn.right-4, self.jianBtn.top, 50,22)];
+    UIImageView *numberBg = [[UIImageView alloc]initWithFrame:CGRectMake(self.jianBtn.right, self.jianBtn.top, SCREENWIDTH/375 * 38,SCREENWIDTH/375 * 28)];
     numberBg.image = IMAGENAMED(@"numbe_bg_icon");
-    
+    numberBg.contentMode = UIViewContentModeScaleAspectFill;
+    numberBg.clipsToBounds = YES;
     [self addSubview:numberBg];
     
     
@@ -50,9 +51,11 @@
     
     
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addBtn.frame = CGRectMake(numberBg.right-5,self.jianBtn.top, 26, 22);
+    self.addBtn.frame = CGRectMake(numberBg.right,self.jianBtn.top, SCREENWIDTH/375 * 28, SCREENWIDTH/375 * 28);
     self.addBtn.tag = 12;
     [self.addBtn setImage:IMAGENAMED(@"add_icon") forState:UIControlStateNormal];
+    self.addBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.addBtn.clipsToBounds = YES;
     [self.addBtn addTarget:self action:@selector(addBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.addBtn];
     
@@ -68,12 +71,7 @@
     
     self.numberLab.text = numberString;
 }
-- (void)awakeFromNib {
-    
-    
-    
-    
-}
+
 
 - (void)deleteBtnAction:(UIButton *)sender {
     

@@ -94,10 +94,10 @@
     LeftlineLabel * label = [[LeftlineLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+10, Scrollwidth, 20) Title:@"家医服务" margin:30 lineOrigin:0 textColor:[UIColor colorWithRed:51/255.0 green:73/255.0 blue:109/255.0 alpha:1.0] textFont:[UIFont systemFontOfSize:12]];
   
     [self.mainScroll addSubview:label];
-    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"服务登记",@"服务记录",@"随访管理",@"预约挂号",@"预约记录",@"追加个性包"] imageNameArr:@[@"居民页面icon7",@"居民页面icon8",@"居民页面icon9",@"居民页面icon10",@"居民页面icon11",@"居民页面icon11"] viewWidth:Scrollwidth-10 eachNum:4 Hmargin:horitalmargin Vmargin:verticalmargin  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
+    ButtonAlignView * thirdv = [[ButtonAlignView alloc]initWithButtonNameArr:@[@"服务登记",@"服务记录",@"随访管理",@"预约挂号",@"预约记录",@"追加个性包"] imageNameArr:@[@"居民页面icon7",@"居民页面icon8",@"居民页面icon9",@"居民页面icon10",@"居民页面icon11",@"居民页面icon11"] viewWidth:Scrollwidth-10 eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin  tagTextFont:[UIFont systemFontOfSize:12] tagTextColor:[UIColor lightGrayColor] ButtonBackgroundColor:[UIColor whiteColor]];
     [self.mainScroll addSubview:thirdv];
     self.thirdv = thirdv;
-    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"服务登记",@"服务记录",@"随访管理",@"预约挂号",@"预约记录",@"追加个性包"] viewWidth:Scrollwidth-10  eachNum:4 Hmargin:horitalmargin Vmargin:verticalmargin];
+    CGFloat H = [ButtonAlignView returnViewHeightWithTagTexts:@[@"服务登记",@"服务记录",@"随访管理",@"预约挂号",@"预约记录",@"追加个性包"] viewWidth:Scrollwidth-10  eachNum:3 Hmargin:horitalmargin Vmargin:verticalmargin];
     [self.thirdv  setFrame:CGRectMake(5, CGRectGetMaxY(label.frame), Scrollwidth-10, H)];
     __weak UserViewController * weakSelf = self;
     [self.thirdv  setClickBlock:^(NSString *titleStr) {

@@ -9,6 +9,8 @@
 #ifndef Pch_Header_h
 #define Pch_Header_h
 #import "UIDevice+PHiPhoneX.h"
+#import "UIColor+GHColors.h"
+
 #define StatusBarHeight (UIApplication.sharedApplication.statusBarFrame.size.height)
 #define isiPhoneX [[UIDevice currentDevice] isX]
 #define safeOffset (isiPhoneX ? 34.f : 0) //iphoneX 底部安全距离

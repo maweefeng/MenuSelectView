@@ -26,7 +26,7 @@
 @property (nonatomic,strong) UILabel *singleAllPriceLabel;//原价
 
 
-@property (nonatomic,strong) UILabel *shopTypeLab;//商品型号
+@property (nonatomic,strong) UILabel *periodLab;//商品型号
 
 @property (nonatomic,strong) UIButton *jianBtn;//减数量按钮
 
