@@ -33,15 +33,15 @@
     bar.barTintColor = [UIColor whiteColor];
     UITextField *searchField = [bar valueForKey:@"searchField"];
     searchField.placeholder = @"请输入姓名关键字";
-    [searchField setValue:[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [searchField setValue:[UIColor gh_colorFromHexString:@"#C4C5CE"] forKeyPath:@"_placeholderLabel.textColor"];
     searchField.textColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1];
     if (searchField) {
-        [searchField setBackgroundColor:[UIColor colorWithRed:244/255.0 green:250/255.0 blue:253/255.0 alpha:1]];
+        [searchField setBackgroundColor:[UIColor gh_colorFromHexString:@"#F2F2F2"]];
         searchField.layer.cornerRadius = 18.0f;
         searchField.layer.masksToBounds = YES;
     }
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, originY+40, self.view.frame.size.width, self.view.frame.size.height-originY-40)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, originY+40, self.view.frame.size.width, self.view.frame.size.height-originY-40-safeOffset)];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"UserTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -100,6 +100,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
  
     
     return cell;
